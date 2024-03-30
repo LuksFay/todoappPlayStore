@@ -17,14 +17,24 @@ const InputModal = ({
   setModalVisible,
   todoInputValue,
   setTodoInputValue,
+  handleAddTodo,
+  todos,
 }) => {
   const handleCloseModal = () => {
     setModalVisible(false);
+    setTodoInputValue("");
   };
   const handleSubmit = () => {
-    alert("Enviado!");
-    setModalVisible(false);
-    setTodoInputValue('');
+    handleAddTodo({
+      title: todoInputValue,
+      Date: new Date().toUTCString(),
+      key: `${
+        (todos[todos.lenght - 1] &&
+          parseInt(todos[todos.length -1].key) + 1) ||
+        1
+      }`,
+    });
+    setTodoInputValue("");
   };
   return (
     <>

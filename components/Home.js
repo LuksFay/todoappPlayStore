@@ -35,19 +35,30 @@ const Home = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [todoInputValue, setTodoInputValue] = useState();
 
+  // Function to add a new todo
+  const handleAddTodo = (todo) => {
+    const newTodos = [...todos, todo];
+    setTodos(newTodos);
+    setModalVisible(false);
+  };
 
-// FUNCITON TO ADD TODOS
 
+  //editin
 
+  const handleTriggerEdit = (item)=>{
+    alert("editando")
+  }
   return (
     <>
       <Header handleClearTodos={handleClearTodos} />
-      <ListItems todos={todos} setTodos={setTodos} />
+      <ListItems todos={todos} setTodos={setTodos} handleTriggerEdit={handleTriggerEdit}/>
       <InputModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         todoInputValue={todoInputValue}
         setTodoInputValue={setTodoInputValue}
+        handleAddTodo={handleAddTodo}
+        todos={todos}
       />
     </>
   );
